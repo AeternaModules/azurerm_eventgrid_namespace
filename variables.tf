@@ -45,20 +45,20 @@ EOT
       action  = optional(string) # Default: "Allow"
       ip_mask = string
     })))
-    topic_spaces_configuration = optional(object({
+    topic_spaces_configuration = optional(list(object({
       alternative_authentication_name_source = optional(list(string))
-      dynamic_routing_enrichment = optional(object({
+      dynamic_routing_enrichment = optional(list(object({
         key   = string
         value = string
-      }))
+      })))
       maximum_client_sessions_per_authentication_name = optional(number) # Default: 1
       maximum_session_expiry_in_hours                 = optional(number) # Default: 1
       route_topic_id                                  = optional(string)
-      static_routing_enrichment = optional(object({
+      static_routing_enrichment = optional(list(object({
         key   = string
         value = string
-      }))
-    }))
+      })))
+    })))
   }))
   validation {
     condition = alltrue([

@@ -26,11 +26,11 @@ resource "azurerm_eventgrid_namespace" "eventgrid_namespaces" {
   }
 
   dynamic "topic_spaces_configuration" {
-    for_each = each.value.topic_spaces_configuration != null ? [each.value.topic_spaces_configuration] : []
+    for_each = each.value.topic_spaces_configuration != null ? each.value.topic_spaces_configuration : []
     content {
       alternative_authentication_name_source = topic_spaces_configuration.value.alternative_authentication_name_source
       dynamic "dynamic_routing_enrichment" {
-        for_each = topic_spaces_configuration.value.dynamic_routing_enrichment != null ? [topic_spaces_configuration.value.dynamic_routing_enrichment] : []
+        for_each = topic_spaces_configuration.value.dynamic_routing_enrichment != null ? topic_spaces_configuration.value.dynamic_routing_enrichment : []
         content {
           key   = dynamic_routing_enrichment.value.key
           value = dynamic_routing_enrichment.value.value
@@ -40,7 +40,7 @@ resource "azurerm_eventgrid_namespace" "eventgrid_namespaces" {
       maximum_session_expiry_in_hours                 = topic_spaces_configuration.value.maximum_session_expiry_in_hours
       route_topic_id                                  = topic_spaces_configuration.value.route_topic_id
       dynamic "static_routing_enrichment" {
-        for_each = topic_spaces_configuration.value.static_routing_enrichment != null ? [topic_spaces_configuration.value.static_routing_enrichment] : []
+        for_each = topic_spaces_configuration.value.static_routing_enrichment != null ? topic_spaces_configuration.value.static_routing_enrichment : []
         content {
           key   = static_routing_enrichment.value.key
           value = static_routing_enrichment.value.value
