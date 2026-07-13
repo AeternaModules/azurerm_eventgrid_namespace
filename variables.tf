@@ -33,16 +33,16 @@ EOT
     location              = string
     name                  = string
     resource_group_name   = string
-    capacity              = optional(number) # Default: 1
-    public_network_access = optional(string) # Default: "Enabled"
-    sku                   = optional(string) # Default: "Standard"
+    capacity              = optional(number)
+    public_network_access = optional(string)
+    sku                   = optional(string)
     tags                  = optional(map(string))
     identity = optional(object({
       identity_ids = optional(set(string))
       type         = string
     }))
     inbound_ip_rule = optional(list(object({
-      action  = optional(string) # Default: "Allow"
+      action  = optional(string)
       ip_mask = string
     })))
     topic_spaces_configuration = optional(list(object({
@@ -51,8 +51,8 @@ EOT
         key   = string
         value = string
       })))
-      maximum_client_sessions_per_authentication_name = optional(number) # Default: 1
-      maximum_session_expiry_in_hours                 = optional(number) # Default: 1
+      maximum_client_sessions_per_authentication_name = optional(number)
+      maximum_session_expiry_in_hours                 = optional(number)
       route_topic_id                                  = optional(string)
       static_routing_enrichment = optional(list(object({
         key   = string
