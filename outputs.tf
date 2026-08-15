@@ -8,7 +8,7 @@ output "eventgrid_namespaces_capacity" {
 }
 output "eventgrid_namespaces_identity" {
   description = "Map of identity values across all eventgrid_namespaces, keyed the same as var.eventgrid_namespaces"
-  value       = { for k, v in azurerm_eventgrid_namespace.eventgrid_namespaces : k => v.identity if v.identity != null && length(v.identity) > 0 }
+  value       = { for k, v in azurerm_eventgrid_namespace.eventgrid_namespaces : k => one(v.identity) if v.identity != null && length(v.identity) > 0 }
 }
 output "eventgrid_namespaces_inbound_ip_rule" {
   description = "Map of inbound_ip_rule values across all eventgrid_namespaces, keyed the same as var.eventgrid_namespaces"
